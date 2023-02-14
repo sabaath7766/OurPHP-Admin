@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MySQL Functions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="myscripts.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="header">
+                <div class="pull-left">
+                    <h1>OurPHP</h1>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-login" onclick="signOut()">Sign Out</button>
+                </div>
+            </div>
+            <h1>Welcome, {{SignedInUserName}}!</h1>
+            <div id="button-bar">
+                <button>Table 1</button>
+                <button>Table 2</button>
+                <button>Table 3</button>
+                <button id="button-bar-plus">+</button>
+            </div>
+            <div id="table-list"></div> <!-- Table list section -->
+            <table class="table" id="demo-table" data-sortable>
+                <thead>
+                <tr>
+                    <th>
+                        <div class="dropdown">
+                            <span contenteditable="true">ID</span>
+                            <button class="btn btn-default dropdown-toggle" type="button" id="columnDropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="columnDropdown">
+                                <li><a href="#" onclick="deleteColumn(this)">Delete</a></li>
+                                <li><a href="#" onclick="alterColumnType(this)">Alter Type</a></li>
+                                <li><a href="#" onclick="makePrimaryKey(this)">Make Primary Key</a></li>
+                                <li><a href="#" onclick="addColumn(this)">Add Column</a></li>
+                            </ul>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="dropdown">
+                            <span contenteditable="true">Name</span>
+                            <button class="btn btn-default dropdown-toggle" type="button" id="columnDropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="columnDropdown">
+                                <li><a href="#" onclick="deleteColumn(this)">Delete</a></li>
+                                <li><a href="#" onclick="alterColumnType(this)">Alter Type</a></li>
+                                <li><a href="#" onclick="makePrimaryKey(this)">Make Primary Key</a></li>
+                                <li><a href="#" onclick="addColumn(this)">Add Column</a></li>
+                            </ul>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="dropdown">
+                            <span contenteditable="true">Age</span>
+                            <button class="btn btn-default dropdown-toggle" type="button" id="columnDropdown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="columnDropdown">
+                                <li><a href="#" onclick="deleteColumn(this)">Delete</a></li>
+                                <li><a href="#" onclick="alterColumnType(this)">Alter Type</a></li>
+                                <li><a href="#" onclick="makePrimaryKey(this)">Make Primary Key</a></li>
+                                <li><a href="#" onclick="addColumn(this)">Add Column</a></li>
+                            </ul>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="dropdown">
+                            <span contenteditable="true">Gender</span>
+                            <button class="btn btn-default dropdown-toggle" type="button" id="columnDropdown4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="columnDropdown">
+                                <li><a href="#" onclick="deleteColumn(this)">Delete</a></li>
+                                <li><a href="#" onclick="alterColumnType(this)">Alter Type</a></li>
+                                <li><a href="#" onclick="makePrimaryKey(this)">Make Primary Key</a></li>
+                                <li><a href="#" onclick="addColumn(this)">Add Column</a></li>
+                            </ul>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td contenteditable="false">1</td>
+                    <td contenteditable="true">John</td>
+                    <td contenteditable="true">25</td>
+                    <td contenteditable="true">Male</td>
+                </tr>
+                <tr>
+                    <td contenteditable="false">2</td>
+                    <td contenteditable="true">Jane</td>
+                    <td contenteditable="true">30</td>
+                    <td contenteditable="true">Female</td>
+                </tr>
+                <tr>
+                    <td contenteditable="false">3</td>
+                    <td contenteditable="true">Bob</td>
+                    <td contenteditable="true">45</td>
+                    <td contenteditable="true">Male</td>
+                </tr>
+                <tr>
+                    <td contenteditable="false">4</td>
+                    <td contenteditable="true">Alice</td>
+                    <td contenteditable="true">35</td>
+                    <td contenteditable="true">Female</td>
+                </tr>
+                <tr>
+                    <td contenteditable="false">5</td>
+                    <td contenteditable="true">Mike</td>
+                    <td contenteditable="true">27</td>
+                    <td contenteditable="true">Male</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
