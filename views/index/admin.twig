@@ -1,0 +1,87 @@
+{% extends '../base.twig' %}
+
+{% block content %}
+    {% if 'admin' in user.roles %}
+    <h2>Dostupné len pre administrátora</h2>
+    {% endif %}
+    <!-- Formular na pridanie noveho postu viditelny len pre admina-->
+    <form action="/post/new" method="post">
+        <div class="card mt-4" style="border-radius: 20px">
+            <div class="card-header" style="padding-top: 20px; background-color: #14213D; border-radius: 15px 15px 0 0; color: #fca311">Pridať nové podujatie</div>
+            <div class="card-body" style="padding: 15px; background-color: #212529; color: #fca311">
+                <label for="nazov">Nazov:</label>
+                <input type="text" style="border-radius: 10px; color: #212529" class="form-control" name="nazov">
+                <label for="popis">Popis:</label>
+                <textarea class="form-control" style="border-radius: 10px; margin-bottom: 10px" name="popis"></textarea>
+                <label for="typ">Typ:</label>
+                <select className="form-control" id="category" name="typ">
+                    <option value=NULL style="color: gray(50)">Vyberte kategoriu</option>
+                    <option value="Koncert">Koncert</option>
+                    <option value="Divadlo">Divadlo</option>
+                    <option value="Kino">Kino</option>
+                    <option value="Výstava">Výstava</option>
+                    <option value="Iné">Iné</option>
+                </select>
+                <label for="datum">Datum konania:</label>
+                <input type="date" style="border-radius: 10px; color: #212529" id="datum" name="datum" value="{{ "now" }}"><br>
+                <label for="cas">Začiatok podujatia:</label>
+                <input type="time" style="border-radius: 10px; color: #212529" id="cas" name="cas"><br>
+                <label for="miesto_konania">Miesto konania:</label>
+                <input type="text" style="border-radius: 10px; color: #212529; margin-bottom: 10px" class="form-control" name="miesto_konania">
+                <label for="region">Region:</label>
+                <select className="form-control" id="region" name="region">
+                    <option value=NULL style="color: gray(50);">Vyberte kraj</option>
+                    <option value="Bratislavský kraj">Bratislavský kraj</option>
+                    <option value="Banskobystrický kraj">Banskobystrický kraj</option>
+                    <option value="Košický kraj">Košický kraj</option>
+                    <option value="Nitriansky kraj">Nitrianský kraj</option>
+                    <option value="Prešovský kraj">Prešovský kraj</option>
+                    <option value="Trenčiansky kraj">Trenčiansky kraj</option>
+                    <option value="Trnavský kraj">Trnavský kraj</option>
+                    <option value="Žilinský kraj">Žilinský kraj</option>
+                </select>
+            </div>
+            <div class="card-footer" style="background-color: #14213D; border-radius: 0 0 15px 15px; text-decoration: none">
+                <input type="submit" style="color: #14213D; background-color: #fca311; border-color: #915f0b" class="btn btn-success float-end" value="Pridať">
+            </div>
+        </div>
+        <!-- Zoradenie postov pre admina -->
+        {% if 'admin' in user.roles %}
+        <div class="nav-item dropdown" style="margin-top: 10px;">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Zoradit podla:</a>
+            <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/post/orderbydateA"><i class="fa-solid fa-calendar"></i>  Zoradit podla datumu</a></li>
+                <li><a class="dropdown-item" href="/post/orderbynameA"><i class="fa-solid fa-arrow-down-a-z"></i>  Zoradit podla nazvu</a></li>
+                <li><a class="dropdown-item" href="/post/orderbyregion"><i class="fa-solid fa-location-pin"></i>  Zoradit podla regionu</a></li>
+            </ul>
+        </div>
+        {% endif %}
+    </form>
+    <!-- Loop na zobrazenie postov aj tych ktore sa uz vykonali -->
+    {% if 'admin' in user.roles %}
+        {% for post in posts %}
+            <div class="card mt-4" style="padding: 20px; background-color: rgb(11,27,61); border-radius: 15px; text-decoration: none">
+                <a href="/post/pod_info/{{ post.id }}">
+                    <div class="float-start">
+                        <h2 style="color:#fca311">{{ post.nazov }}</h2>
+                        <h4 style="color: #fca311">{{ post.miesto_konania }}</h4>
+                    </div>
+                    <div class="d-flex justify-content-end" >
+                        <h5 style="color:#fca311; margin-right:20px">{{ post.typ }}</h5>
+                        <h5 style="color:#fca311">{{ post.region }}</h5>
+                    </div>
+                    <div class="d-flex justify-content-end" style="color: #fca311">
+                        <h5 style=" margin-right:10px">{{ post.datum_konania | date('d. m. Y') }}</h5>
+                        <h5 >{{ post.cas | date('H:i')}}</h5>
+                    </div>
+                    <div class="d-flex justify-content-end" style="color: #fca311">
+                        <a class="badge r" style="background-color: #560c0c" href="/post/delete/{{ post.id }}"><i class="fa-solid fa-trash" style="color: #fca311"></i></a>
+                        <a class="badge " style="background-color: #fca311" href="/post/updatered/{{ post.id }}"><i class="fa-solid fa-pen" style="color: #0b1b3d"></i></a>
+                    </div>
+                </a>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

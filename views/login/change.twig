@@ -1,0 +1,21 @@
+{% extends '../base.twig' %}
+
+{% block content %}
+    <!-- Formular na prihlasenia usera -->
+    <div class="row">
+        <div class="col-4 offset-4">
+            <form action="/user/change" method="post" class="mt-4">
+                <div class="card" style="border-radius: 20px">
+                    <div class="card-header" style="background-color: #14213D; color: #fca311; border-radius: 15px 15px 0 0">Zmena hesla</div>
+                    <div class="card-body" style="background-color: #212529; border-radius: 0 0 15px 15px">
+                        <label style="color: #fca311">Heslo</label>
+                        <input class="form-control" style="border-radius: 10px; color: black" type="password" name="password1" placeholder="Zadajte nove heslo.">
+                        <label style="color: #fca311">Heslo znovu</label>
+                        <input class="form-control" style="border-radius: 10px; color: black" type="password" name="password2" placeholder="Zadajte nove heslo znovu.">
+                        <input class="btn btn-success mt-4 float-end" style="color: #14213D; background-color: #fca311; border-color: #915f0b" type="submit" value="Zmenit heslo">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

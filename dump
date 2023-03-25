@@ -1,0 +1,48 @@
+<form action="../pridaj_podujatie">
+    <label htmlFor="Nazov">Názov</label><br>
+    <input type="text" id="Nazov" name="nazov"><br>
+        <label htmlFor="Datum"></label>Dátum<br>
+        <input type="date" id="Datum" name="datum"><br>
+            <label htmlFor="Opis"></label>Opis podujatia<br>
+            <input type="text" id="Opis" name="opis"><br>
+                <label htmlFor="Miesto"></label>Miesto konania<br>
+                <input type="text" id="Miesto" name="miesto"><br><br>
+                    <label htmlFor="category">Typ podujatia</label><br>
+                    <select className="form-control" id="category" name="typ">
+                        <option value="">Nemeniť</option>
+                        <option value="Koncert">Koncert</option>
+                        <option value="Divadlo">Divadlo</option>
+                        <option value="Kino">Kino</option>
+                        <option value="Výstava">Výstava</option>
+                        <option value="Festival">Festival</option>
+                    </select>
+                    <label htmlFor="Kraj"></label>Kraj konania<br>
+                    <select className="form-control" id="region" name="kraj">
+                        <option value="">Nezmeniť!</option>
+                        <option value="Bratislavský">Bratislavský kraj</option>
+                        <option value="Banskobystrický">Banskobystrický kraj</option>
+                        <option value="Košický">Košický kraj</option>
+                        <option value="Nitriansky">Nitrianský kraj</option>
+                        <option value="Prešovský">Prešovský kraj</option>
+                        <option value="Trenčiansky">Trenčiansky kraj</option>
+                        <option value="Trnavský">Trnavský kraj</option>
+                        <option value="Žilinský">Žilinský kraj</option>
+                    </select>
+                    <input type="submit" value="PRIDAŤ">
+</form>
+
+router.post("/new", authorize('user', 'admin'), async function (req, res) {
+    // pockat na dokoncenie funkcie pre pridanie prispevku
+    await Posts.addPost(req.body.nazov, req.body.popis, req.body.typ, req.body.datum, req.body.cas, req.body.miesto_konania, req.body.region);
+    await req.flash('success', 'Príspevok bol pridaný.')
+
+    // presmerovat na zobrazenie vsetkych prispevkov
+    res.redirect('/post/admin');
+});
+
+<div class="card-body">
+                <label for="autor">Autor:</label>
+                <input type="text" class="form-control" name="autor">
+                <label for="message">Sprava:</label>
+                <textarea class="form-control" name="message"></textarea>
+            </div>
